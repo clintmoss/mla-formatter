@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- 
+  Created by: Clint Mossman
+  Date: 11/3/2020
+  Purpose: Format necessary information into MLA citations
+
+  To Do:
+
+  1 - Format URL to account for http and https
+  2 - Format text for book and article versions
+  3 - Check if parathentical citations change
+  4 - Copy to clipboard for parathentical citation
+  5 - Make sure it is mobile friendly
+  6 - Upload to GitHub
+ -->
+<head>
+  <link rel="stylesheet" href="custom.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Dosis:wght@500&display=swap" rel="stylesheet">
+  <title>MLA Formatter</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+</head>
+
+<body>
+  <div class="row">
+  <!-- Title -->
+  <div class="left-wrapper">
+    <div class="title-area">
+     <h1>- MLA Formatter -</h1>
+     <p>1.  Simply add in your text<br>
+      2. Then hit dat 'format button'<br>
+      3. Get your info in MLA format</p>
+    </div>
+  </div>
+
+    <!-- Form-->
+    <div class="right-wrapper">
+    <form>
+      <label>Author's Name<span class="required">*</span></label>
+      <input type="text" name="firstName" placeholder="first" id="first" value="First" >
+      <input type="text" name="lastName" placeholder="last" id="last" value="Last" >
+      <label>Website URL</label>
+      <input type="url" name="website" placeholder="www." id="url" value="www.google.com" novalidate>
+      <label>Page Number(s)</label>
+      <input type="number" name="pageNumber" placeholder="12" id="pageNumber" value="1">
+      <label>Title of the Source<span class="required">*</span></label> 
+      <input type="text" name="title" placeholder="The Boy Who Cried Why" id="title" value="the boy who cried" required>
+      <label>Published Date</label>
+      <input type="date" name="date" placeholder="MM/DD/YYYY" id="date" value="1995-01-12">
+      <label>Media Type<span class="required">*</span></label>
+        <div class="radio-options">
+        <input type="radio" name="media" value="web" id="web" class="radio">
+        <label for="web">Web</label>
+        <input type="radio" name="media" value="book" id="book" class="radio">
+        <label for="book">Book</label>
+        <input type="radio" name="media" value="article" id="article" class="radio">
+        <label for="article">Article</label>
+        </div>
+        <!-- Book specific inputs -->
+        <div id="bookInfo" style="display:none;">
+          <label for="book">Book</label>
+          <input type="text" name="book">
+          <label for="volume">Volume</label>
+          <input type="number" name="volume">
+          <label for="year">Year</label>
+          <input type="number" name="year">
+          <label for="version">Version</label>
+          <input type="number" name="version">
+        </div>
+        <!-- Article specific inputs -->
+        <div id="articleInfo" style="display:none;">
+          <label for="version">Version</label>
+          <input type="text" name="version">
+        </div>
+    </form>
+          <!-- Format button -->
+          <div class="format">
+            <button id="format-btn" type="submit">Format this shiz</button>
+            </div>
+          </div>
+  </div>
+  
+  <!-- Area to format the string to MLA style-->
+  <div class="citation-area">
+    <div>
+      <!-- Works Cited Citation-->
+      <div class="citations">
+        <h3>MLA Formatted Citation</h3>
+        <br>
+        <button id="copy-whole-citation">Copy Text</button>
+        <span id="whole-citation"><span id="mla-author">citation</span><span id="mla-title"></span><span id="mla-container"></span><span id="mla-url"></span></span>
+      </div>
+
+      <!-- Parathentical Citation-->
+      <div class="citations">
+        <h3>Parathentical Citation</h3>
+        <br>
+        <span id="mla-parenthesis">(citation)</span>
+      </div>
+    </div>
+</div>
+    <script src="index.js"></script>
+  <!-- Footer -->
+    <footer>
+      <p>This MLA formatter formats information according to the guidelines listed by OWL Purdue - <a href="https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_and_style_guide.html" target="_blank">link</a></p>
+      <p>Last Updated 11/20/2020 - Created by Clint Mossman</p>
+    </footer>
+  
+</body>
