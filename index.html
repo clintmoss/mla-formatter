@@ -36,16 +36,16 @@
     <div class="right-wrapper">
     <form>
       <label>Author's Name<span class="required">*</span></label>
-      <input type="text" name="firstName" placeholder="first" id="first" value="First" >
-      <input type="text" name="lastName" placeholder="last" id="last" value="Last" >
+      <input type="text" name="firstName" placeholder="first" id="first" value="" >
+      <input type="text" name="lastName" placeholder="last" id="last" value="" >
       <label>Website URL</label>
-      <input type="url" name="website" placeholder="www." id="url" value="www.google.com" novalidate>
+      <input type="url" name="website" placeholder="www." id="url" value="" novalidate>
       <label>Page Number(s)</label>
-      <input type="number" name="pageNumber" placeholder="12" id="pageNumber" value="1">
+      <input type="number" name="pageNumber" placeholder="" id="pageNumber" value="">
       <label>Title of the Source<span class="required">*</span></label> 
-      <input type="text" name="title" placeholder="The Boy Who Cried Why" id="title" value="the boy who cried" required>
+      <input type="text" name="title" placeholder="The Boy Who Cried Why" id="title" value="" required>
       <label>Published Date</label>
-      <input type="date" name="date" placeholder="MM/DD/YYYY" id="date" value="1995-01-12">
+      <input type="date" name="date" placeholder="MM/DD/YYYY" id="date" value="">
       <label>Media Type<span class="required">*</span></label>
         <div class="radio-options">
         <input type="radio" name="media" value="web" id="web" class="radio">
@@ -57,20 +57,18 @@
         </div>
         <!-- Book specific inputs -->
         <div id="bookInfo" style="display:none;">
-          <label for="book">Book</label>
-          <input type="text" name="book">
-          <label for="volume">Volume</label>
-          <input type="number" name="volume">
-          <label for="year">Year</label>
-          <input type="number" name="year">
-          <label for="version">Version</label>
-          <input type="number" name="version">
+          <label for="publisher">Publisher</label>
+          <input type="text" name="publisher" id="publisher" placeholder="name">
+          <label for="edition">Edition</label>
+          <input type="number" name="edition" id="edition" placeholder="">
         </div>
         <!-- Article specific inputs -->
         <div id="articleInfo" style="display:none;">
           <label for="version">Version</label>
           <input type="text" name="version">
         </div>
+        <!-- Web specific inputs  -->
+        <div id="webInfo" style="display:none;"></div>
     </form>
           <!-- Format button -->
           <div class="format">
@@ -87,7 +85,7 @@
         <h3>MLA Formatted Citation</h3>
         <br>
         <button id="copy-whole-citation">Copy Text</button>
-        <span id="whole-citation"><span id="mla-author">citation</span><span id="mla-title"></span><span id="mla-container"></span><span id="mla-url"></span></span>
+        <span id="whole-citation"><span id="mla-author">citation</span><span id="mla-title"><span id="mla-edition"></span></span><span id="mla-container"></span><span id="mla-url"></span><span id="mla-publisher"></span><span id="mla-year"></span></span>
       </div>
 
       <!-- Parathentical Citation-->

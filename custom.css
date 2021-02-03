@@ -110,12 +110,16 @@ input {
   border-radius: 5px;
   transition: .5s;
   background-color: var(--sand);
+  color: rgb(70, 70, 70);
+}
+
+input::placeholder {
   color: white;
 }
 
 input:focus{
   background-color: white;
-  color: black;
+  color: rgb(70, 70, 70);
   outline: none;
   transition: .5s;
   border: 1px soild rgba(229, 197, 181,.8);
@@ -164,13 +168,13 @@ input[type="radio"]{
   margin: 0 auto;
   border: none;
   border-radius: 5px;
-  color: black;
+  color: rgb(70, 70, 70);
 }
 
 #copy-whole-citation {
   display: inline;
   background-color: white;
-  color: black;
+  color: rgb(70, 70, 70);
   border: none;
   padding: 1%;
   border-radius: 5px;

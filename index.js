@@ -1,79 +1,94 @@
-//Targets and event listeners 
+//These are just actions on the page to listen for
+let formatButton = document.getElementById('format-btn')
+let radioClick = document.getElementsByClassName('radio')
+let copyButton = document.getElementById('copy-whole-citation')
+
+//These variables listen if different types are checked to change which information is needed
+let bookDiv = document.getElementById('bookInfo')
+let articleDiv = document.getElementById('articleInfo')
+let webDiv = document.getElementById('webInfo')
+
+
+//These are the variables that are actually put into the DOM for the citation
+let mlaAuthor = document.getElementById('mla-author')
+let mlaTitle = document.getElementById('mla-title')
+let mlaContainer = document.getElementById('mla-container')
+let mlaUrl = document.getElementById('mla-url')
+let mlaParenthesisCitation = document.getElementById('mla-parenthesis')
+let mlaPublisher = document.getElementById('mla-publisher')
+let mlaEdition = document.getElementById('mla-edition')
+let mlaYear = document.getElementById('mla-year')
+
+//These are just to target values from the form 
 let firstName = document.getElementById('first')
 let lastName = document.getElementById('last')
 let websiteUrl = document.getElementById('url')
 let title = document.getElementById('title')
 let date = document.getElementById('date')
 let pageNumber = document.getElementById('pageNumber')
-let mlaAuthor = document.getElementById('mla-author')
-let mlaTitle = document.getElementById('mla-title')
-let mlaContainer = document.getElementById('mla-container')
-let mlaUrl = document.getElementById('mla-url')
-let bookDiv = document.getElementById('bookInfo')
-let articleDiv = document.getElementById('articleInfo')
-let button = document.getElementById('format-btn')
-let radioClick = document.getElementsByClassName('radio')
-let mlaParenthesisCitation = document.getElementById('mla-parenthesis')
-let copyButton = document.getElementById('copy-whole-citation')
+let publisher = document.getElementById('publisher')
+let edition = document.getElementById('edition')
 
-//Disguised boxes
-let bookVisibility = "none"
-let articleVisibility = "none"
+
+
 
 //Event listener on the format button and radio buttons
 radioClick[0].addEventListener('click',function(){
-  bookVisibility = "none"
-  articleVisibility = "none"
-  bookDiv.style.display = bookVisibility
+  bookDiv.style.display = "none"
+  articleDiv.style.display = "none"
+  webDiv.style.display = "none"
 })
 radioClick[1].addEventListener('click', function(){
-  bookVisibility = "block"
-  articleVisibility = "none"
-  bookDiv.style.display = bookVisibility
-  articleDiv.style.display = articleVisibility
-
+  bookDiv.style.display = "block"
+  articleDiv.style.display = "none"
+  webDiv.style.display = "none"
 })
 radioClick[2].addEventListener('click',function(){
-  bookVisibility = "none"
-  bookDiv.style.display = bookVisibility
-  articleVisibility = "block"
-  articleDiv.style.display = articleVisibility
+  bookDiv.style.display = "none"
+  webDiv.style.display = "none"
+  articleDiv.style.display = "block"
 })
 
 //Format button event listener
-button.addEventListener("click",formatInfo);
+formatButton.addEventListener("click",formatInfo);
 
-//Parenthesis and normal citations
+//Parenthesis and normal citations, calls all the functions to reformat the citation depending on the type of citation
 function formatInfo(){
   let formattedAuthor =  formatAuthor();
   let formattedTitle = formatTitle();
   let formattedDate = date.value 
   formattedDate = parseDate(formattedDate) // 0 - year, 1 - month, 2 - day
   let formattedContainer = formatUrl();
+  let formattedEdition = formatEdition();
+  console.log(formattedEdition)
+
+
   //Format for web
   if(document.getElementById('web').checked){
     mlaAuthor.innerText = formattedAuthor[1] + ", " + formattedAuthor[0] + ". "
     mlaTitle.innerText = "\"" +formattedTitle + ".\" "
     mlaContainer.innerText = formattedContainer + ",\n"
-    mlaContainer.style.fontStyle="italic"
+    mlaContainer.style.fontStyle="italic" 
     mlaUrl.innerText = websiteUrl.value;
     mlaParenthesisCitation.innerText = "(" + formattedAuthor[1] + " " + pageNumber.value + ")"; 
   }
+
   //Format for book
   else if(document.getElementById('book').checked){
-    console.log('book')
     mlaAuthor.innerText = formattedAuthor[1] + ", " + formattedAuthor[0] + ". "
     mlaTitle.innerText = "\"" +formattedTitle + ".\" "
+    mlaEdition = formattedEdition
     mlaTitle.style.fontStyle ="italic"
-    mlaContainer.innerText = formattedContainer + ",\n"
+    mlaPublisher.innerText = publisher.value + ", "
+    mlaYear.innerText = formattedDate[0]
     mlaParenthesisCitation.innerText = "(" + formattedAuthor[1] + " " + pageNumber.value + ")"; 
-
   }
+
   //Format for an article
   else if(document.getElementById('article')){
-
     mlaParenthesisCitation.innerText = "(" + formattedAuthor[1] + " " + pageNumber.value + ")"; 
   }
+
   return 1;
 }
 
@@ -153,5 +168,26 @@ function parseDate(date){
   result[1] = month;
   return result;
 
+}
+
+
+const formatEdition = () => {
+  let bookEdition = edition.value
+  let numberEnding = bookEdition.toString().split('')
+  let endOfNumber = numberEnding.length - 1
+  let end = numberEnding[endOfNumber]
+  end = parseInt(end,10)
+  let endingVerbiage = ""
+
+  switch(end){
+    case 1 : endingVerbiage = "st"; break;
+    case 2 : endingVerbiage = "nd"; break;
+    case 3 : endingVerbiage = "rd"; break;
+    case 4,5,6,7,8,9 : endingVerbiage = "th"; break;
+    deafult: break;
+  }
+
+  let result = bookEdition + endingVerbiage;
+  return result
 }
 
